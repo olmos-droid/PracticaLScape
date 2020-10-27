@@ -2,6 +2,10 @@ package com.example.practicalscape;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,8 +17,16 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image4;
     private ImageView image5;
 
+    private Boolean direccio=true;
+
+    private MediaPlayer mplayer;
 
 
+    ObjectAnimator objectAnimator1;
+    ObjectAnimator objectAnimator2;
+    ObjectAnimator objectAnimator3;
+    ObjectAnimator objectAnimator4;
+    ObjectAnimator objectAnimator5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +42,39 @@ public class MainActivity extends AppCompatActivity {
         image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mplayer = MediaPlayer.create(MainActivity.this,R.raw.queen);
+                mplayer.start();
+
+                if(direccio) {
+                    direccio=false;
+                    AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.frontanimator);
+                    set.setTarget(v);
+                    set.start();
+                }else{
+                    direccio=true;
+                    AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.backanimator);
+                    set.setTarget(v);
+                    set.start();
+
+                }
 
             }
         });
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(direccio){
+                direccio=false;
+                AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.frontanimator_x);
+                set.setTarget(v);
+                set.start();
+            }else{
+                direccio=true;
+                AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.backanimator_x);
+                set.setTarget(v);
+                set.start();
+
+            }
 
             }
         });

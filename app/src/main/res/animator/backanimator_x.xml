@@ -4,7 +4,7 @@
         android:valueFrom="180"
         android:valueTo="0"
         android:duration="1000"
-        android:propertyName="rotationY"
+        android:propertyName="rotationX"
         android:repeatMode="reverse"
         />
 </set>
