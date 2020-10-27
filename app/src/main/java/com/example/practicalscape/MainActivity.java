@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean direccio=true;
 
     private MediaPlayer mplayer;
+    private MediaPlayer mplayer2;
 
 
     ObjectAnimator objectAnimator1;
@@ -63,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mplayer2 = MediaPlayer.create(MainActivity.this,R.raw.queen);
+                mplayer2.start();
                 if(direccio){
                 direccio=false;
                 AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.frontanimator_x);
